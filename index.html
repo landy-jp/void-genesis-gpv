@@ -2,32 +2,49 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>VOID GENESIS GPV v5</title>
+<title>VOID GENESIS GPV v6 Preview</title>
 <style>
-html,body{margin:0;width:100%;height:100%;background:#111218;overflow:hidden;}
-.controller.custom{position:absolute!important;}
+html, body {
+  margin:0;
+  width:100%;
+  height:100%;
+  min-width:1000px;
+  min-height:750px;
+  background:#111218;
+  overflow:hidden;
+}
+.preview-host {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:1000px;
+  height:750px;
+  transform:translate(-50%,-50%);
+}
 </style>
 <link rel="stylesheet" href="./void-genesis-gamepadviewer.css">
 </head>
 <body>
-<div class="controller custom">
-  <div class="triggers"><div class="trigger left"></div><div class="trigger right"></div></div>
-  <div class="bumpers"><div class="bumper left"></div><div class="bumper right"></div></div>
-  <div class="arrows"><div class="back"></div><div class="start"></div></div>
-  <div class="abxy"><div class="button a"></div><div class="button b"></div><div class="button x"></div><div class="button y"></div></div>
-  <div class="sticks"><div class="stick left"></div><div class="stick right"></div></div>
-  <div class="dpad"><div class="face up"></div><div class="face down"></div><div class="face left"></div><div class="face right"></div></div>
+<div class="preview-host">
+  <div class="controller custom">
+    <div class="triggers"><div class="trigger left"></div><div class="trigger right"></div></div>
+    <div class="bumpers"><div class="bumper left"></div><div class="bumper right"></div></div>
+    <div class="arrows"><div class="back"></div><div class="start"></div></div>
+    <div class="abxy"><div class="button a"></div><div class="button b"></div><div class="button x"></div><div class="button y"></div></div>
+    <div class="sticks"><div class="stick left"></div><div class="stick right"></div></div>
+    <div class="dpad"><div class="face up"></div><div class="face down"></div><div class="face left"></div><div class="face right"></div></div>
+  </div>
 </div>
 <script>
 for(const el of document.querySelectorAll('.bumper,.back,.start,.button,.stick,.face')){
- el.onpointerdown=e=>{el.classList.add('pressed');el.setPointerCapture(e.pointerId)};
- el.onpointerup=()=>el.classList.remove('pressed');
- el.onpointercancel=()=>el.classList.remove('pressed');
+  el.onpointerdown=e=>{el.classList.add('pressed');el.setPointerCapture(e.pointerId)};
+  el.onpointerup=()=>el.classList.remove('pressed');
+  el.onpointercancel=()=>el.classList.remove('pressed');
 }
 for(const el of document.querySelectorAll('.trigger')){
- el.onpointerdown=e=>{el.style.opacity='1';el.setPointerCapture(e.pointerId)};
- el.onpointerup=()=>el.style.opacity='0';
- el.onpointercancel=()=>el.style.opacity='0';
+  el.onpointerdown=e=>{el.style.opacity='1';el.setPointerCapture(e.pointerId)};
+  el.onpointerup=()=>el.style.opacity='0';
+  el.onpointercancel=()=>el.style.opacity='0';
 }
 </script>
 </body>

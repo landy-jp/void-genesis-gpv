@@ -1,8 +1,8 @@
 /*
-  VOID Gaming GENESIS / GamePad Viewer Skin v5
+  VOID Gaming GENESIS / GamePad Viewer Skin v6
   ------------------------------------------------------------
-  Designed from the user's real front-view GENESIS image. v4 adjusts top padding and thumbstick alignment.
-  Canvas: 1200 x 900
+  Designed from the user's real front-view GENESIS image. v6 uses GamePad Viewer's native controller centering.
+  Canvas: 1000 x 750
   Input model: standard XInput / Gamepad Viewer custom skin DOM.
   L2/R2: analog intensity glow
   L1/R1: pressed glow
@@ -10,24 +10,22 @@
 */
 
 .controller.custom {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
     width: 1000px;
     height: 750px;
-    margin: 0 !important;
-    transform: translate(-50%, -50%) !important;
-    transform-origin: center center !important;
-    background: url("./genesis-base.png?v=5") 0 0 / 1000px 750px no-repeat;
+    background: url("./genesis-base.png?v=6") 0 0 / 1000px 750px no-repeat;
     overflow: visible;
-    display: block !important;
+    opacity: 1 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
 }
 
+.controller.custom.disconnected,
 .custom.disconnected {
     opacity: 1 !important;
     filter: none !important;
+    -webkit-filter: none !important;
 }
-.custom.disconnected div {
+.custom.disconnected > div {
     display: none !important;
 }
 
