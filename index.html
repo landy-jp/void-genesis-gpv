@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>VOID GENESIS GPV v3</title>
+<style>
+html,body { margin:0; background:#111218; min-height:100%; }
+.frame { position:relative; width:1200px; height:900px; margin:20px auto; }
+</style>
+<link rel="stylesheet" href="./void-genesis-gamepadviewer.css">
+</head>
+<body>
+<div class="frame">
+  <div class="controller custom">
+    <div class="triggers"><div class="trigger left"></div><div class="trigger right"></div></div>
+    <div class="bumpers"><div class="bumper left"></div><div class="bumper right"></div></div>
+    <div class="arrows"><div class="back"></div><div class="start"></div></div>
+    <div class="abxy"><div class="button a"></div><div class="button b"></div><div class="button x"></div><div class="button y"></div></div>
+    <div class="sticks"><div class="stick left"></div><div class="stick right"></div></div>
+    <div class="dpad"><div class="face up"></div><div class="face down"></div><div class="face left"></div><div class="face right"></div></div>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.bumper,.back,.start,.button,.stick,.face').forEach(el=>{
+  el.onpointerdown=e=>{el.classList.add('pressed');el.setPointerCapture(e.pointerId)};
+  el.onpointerup=()=>el.classList.remove('pressed');
+  el.onpointercancel=()=>el.classList.remove('pressed');
+});
+document.querySelectorAll('.trigger').forEach(el=>{
+  el.onpointerdown=e=>{el.style.opacity='1';el.setPointerCapture(e.pointerId)};
+  el.onpointerup=()=>el.style.opacity='0';
+  el.onpointercancel=()=>el.style.opacity='0';
+});
+</script>
+</body>
+</html>

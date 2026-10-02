@@ -1,0 +1,326 @@
+/*
+  VOID Gaming GENESIS / GamePad Viewer Skin v3
+  ------------------------------------------------------------
+  Designed from the user's real front-view GENESIS image. Base image is loaded as an external file for GPV compatibility.
+  Canvas: 1200 x 900
+  Input model: standard XInput / Gamepad Viewer custom skin DOM.
+  L2/R2: analog intensity glow
+  L1/R1: pressed glow
+  L3/R3: the CENTER of the thumb cap glows when stick-click is pressed.
+*/
+
+.controller.custom {
+    position: relative;
+    width: 1200px;
+    height: 900px;
+    background: url("./genesis-base.png") 0 0 / 1200px 900px no-repeat;
+    overflow: visible;
+}
+
+.custom.disconnected {
+    opacity: .48;
+    filter: grayscale(.85);
+}
+.custom.disconnected div {
+    display: none !important;
+}
+
+/* Hide GamePad Viewer's built-in player quadrant. */
+.custom .quadrant {
+    display: none !important;
+}
+
+/* =========================
+   L2 / R2 analog triggers
+   ========================= */
+.custom .triggers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1200px;
+    height: 175px;
+    pointer-events: none;
+}
+.custom .trigger {
+    position: absolute;
+    margin: 0 !important;
+    float: none !important;
+    opacity: 0;
+    box-sizing: border-box;
+    background:
+      radial-gradient(circle at 50% 58%, rgba(229,188,255,.95) 0 8%, rgba(170,74,255,.78) 34%, rgba(72,29,111,.25) 70%, transparent 72%),
+      linear-gradient(180deg, rgba(255,255,255,.15), rgba(148,59,225,.38));
+    border: 3px solid rgba(230,183,255,.96);
+    filter: drop-shadow(0 0 9px rgba(185,82,255,.95))
+            drop-shadow(0 0 20px rgba(148,60,255,.58));
+    color: #fff;
+}
+.custom .trigger::after {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font: 700 36px/1 Arial, sans-serif;
+    color: #fff;
+    text-shadow: 0 0 7px #d99bff, 0 0 16px #a94cff;
+}
+.custom .trigger.left {
+    left: 180px;
+    top: 38px;
+    width: 170px;
+    height: 120px;
+    clip-path: polygon(8% 73%, 14% 28%, 28% 7%, 73% 2%, 90% 16%, 100% 43%, 96% 82%, 82% 98%, 20% 98%);
+    border-radius: 24px;
+}
+.custom .trigger.right {
+    left: 850px;
+    top: 38px;
+    width: 170px;
+    height: 120px;
+    clip-path: polygon(4% 82%, 0 43%, 10% 16%, 27% 2%, 72% 7%, 86% 28%, 92% 73%, 80% 98%, 18% 98%);
+    border-radius: 24px;
+}
+.custom .trigger.left::after { content: "L2"; }
+.custom .trigger.right::after { content: "R2"; }
+
+/* =========================
+   L1 / R1 bumpers
+   ========================= */
+.custom .bumpers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1200px;
+    height: 175px;
+    pointer-events: none;
+}
+.custom .bumper {
+    position: absolute;
+    margin: 0 !important;
+    float: none !important;
+    opacity: 0;
+    box-sizing: border-box;
+    background:
+      radial-gradient(circle at 50% 60%, rgba(232,196,255,.90) 0 6%, rgba(170,76,255,.72) 33%, rgba(80,30,123,.18) 72%, transparent 73%),
+      linear-gradient(180deg, rgba(255,255,255,.16), rgba(149,58,229,.36));
+    border: 3px solid rgba(229,185,255,.94);
+    filter: drop-shadow(0 0 9px rgba(185,82,255,.95))
+            drop-shadow(0 0 17px rgba(148,60,255,.55));
+    color: #fff;
+}
+.custom .bumper::after {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font: 700 30px/1 Arial, sans-serif;
+    color: white;
+    text-shadow: 0 0 7px #d99bff, 0 0 14px #a94cff;
+}
+.custom .bumper.left {
+    left: 414px;
+    top: 72px;
+    width: 121px;
+    height: 80px;
+    clip-path: polygon(2% 80%, 8% 32%, 25% 8%, 77% 3%, 95% 25%, 100% 68%, 89% 95%, 18% 98%);
+    transform: none !important;
+}
+.custom .bumper.right {
+    left: 665px;
+    top: 72px;
+    width: 121px;
+    height: 80px;
+    clip-path: polygon(0 68%, 5% 25%, 23% 3%, 75% 8%, 92% 32%, 98% 80%, 82% 98%, 11% 95%);
+}
+.custom .bumper.left::after { content: "L1"; }
+.custom .bumper.right::after { content: "R1"; }
+.custom .bumper.pressed {
+    opacity: 1;
+}
+
+/* =========================
+   VIEW / MENU
+   ========================= */
+.custom .arrows {
+    position: absolute;
+    left: 403px;
+    top: 296px;
+    width: 394px;
+    height: 54px;
+}
+.custom .back,
+.custom .start {
+    position: absolute;
+    float: none !important;
+    width: 56px;
+    height: 54px;
+    margin: 0 !important;
+    opacity: 0;
+    border-radius: 18px;
+    background: radial-gradient(circle, rgba(226,183,255,.95), rgba(166,70,255,.62) 50%, transparent 72%);
+    filter: drop-shadow(0 0 10px rgba(171,78,255,.9));
+}
+.custom .back { left: 0; top: 0; }
+.custom .start { right: 0; top: 0; }
+.custom .back.pressed,
+.custom .start.pressed {
+    opacity: 1;
+}
+
+/* =========================
+   A B X Y
+   ========================= */
+.custom .abxy {
+    position: absolute;
+    left: 806px;
+    top: 268px;
+    width: 207px;
+    height: 205px;
+}
+.custom .button {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    margin: 0 !important;
+    opacity: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: radial-gradient(circle at 45% 40%, rgba(242,218,255,.96) 0 8%, rgba(183,95,255,.82) 25%, rgba(111,47,176,.57) 50%, rgba(54,22,87,.2) 68%, transparent 71%);
+    border: 2px solid rgba(232,194,255,.9);
+    filter: drop-shadow(0 0 9px rgba(176,82,255,.9));
+}
+.custom .button::after {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font: 600 21px/1 Arial, sans-serif;
+    color: #fff;
+    text-shadow: 0 0 7px #e0b3ff, 0 0 13px #a94cff;
+}
+.custom .button.pressed {
+    opacity: 1;
+    transform: translateY(2px);
+}
+.custom .y { left: 74px; top: 0; }
+.custom .x { left: 0; top: 61px; }
+.custom .b { right: 0; top: 61px; }
+.custom .a { left: 74px; top: 123px; }
+.custom .y::after { content: "Y"; }
+.custom .x::after { content: "X"; }
+.custom .b::after { content: "B"; }
+.custom .a::after { content: "A"; }
+
+/* =========================
+   Thumbsticks
+   Actual caps are functional elements so they visibly move.
+   Only the center lights on L3 / R3.
+   ========================= */
+.custom .sticks {
+    position: absolute;
+    left: 397px;
+    top: 460px;
+    width: 404px;
+    height: 92px;
+}
+.custom .stick {
+    position: absolute;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background:
+      radial-gradient(circle at 49% 45%, rgba(52,52,58,.92) 0 10%, rgba(38,38,43,.98) 28%, rgba(28,28,33,1) 59%, rgba(11,11,14,1) 100%);
+    border: 2px solid rgba(58,58,67,.95);
+    box-shadow:
+      inset 0 4px 9px rgba(255,255,255,.08),
+      inset 0 -8px 12px rgba(0,0,0,.48),
+      0 5px 8px rgba(0,0,0,.55);
+}
+.custom .stick::before {
+    content: "";
+    position: absolute;
+    inset: 13px;
+    border-radius: 50%;
+    background:
+      repeating-radial-gradient(circle at 50% 45%, rgba(255,255,255,.035) 0 1px, rgba(0,0,0,.025) 1px 3px),
+      radial-gradient(circle at 50% 47%, #2d2d33 0%, #202026 68%, #17171c 100%);
+    box-shadow: inset 0 2px 5px rgba(255,255,255,.07);
+}
+.custom .stick::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    opacity: 0;
+    box-sizing: border-box;
+    border: 3px solid rgba(237,196,255,.98);
+    background: radial-gradient(circle, rgba(213,144,255,.42) 0 22%, rgba(172,74,255,.33) 43%, transparent 68%);
+    box-shadow:
+      0 0 8px rgba(229,178,255,.98),
+      0 0 18px rgba(181,76,255,.95),
+      inset 0 0 11px rgba(194,91,255,.68);
+}
+.custom .stick.pressed::after {
+    opacity: 1;
+}
+.custom .stick.left {
+    left: 0;
+    top: 0;
+}
+.custom .stick.right {
+    right: 0;
+    top: 0;
+}
+
+/* =========================
+   D-pad
+   ========================= */
+.custom .dpad {
+    position: absolute;
+    left: 240px;
+    top: 300px;
+    width: 110px;
+    height: 110px;
+}
+.custom .face {
+    position: absolute;
+    opacity: 0;
+    box-sizing: border-box;
+    background: radial-gradient(circle, rgba(229,193,255,.90), rgba(169,76,255,.68) 45%, rgba(84,34,130,.28) 67%, transparent 73%);
+    filter: drop-shadow(0 0 9px rgba(177,80,255,.85));
+}
+.custom .face.pressed {
+    opacity: 1;
+}
+.custom .face.up,
+.custom .face.down {
+    width: 44px;
+    height: 54px;
+    left: 33px;
+    border-radius: 50% 50% 35% 35%;
+}
+.custom .face.left,
+.custom .face.right {
+    width: 54px;
+    height: 44px;
+    top: 33px;
+    border-radius: 50% 35% 35% 50%;
+}
+.custom .face.up { top: 0; }
+.custom .face.down { bottom: 0; transform: rotate(180deg); }
+.custom .face.left { left: 0; }
+.custom .face.right { right: 0; transform: rotate(180deg); }
+
+/* GENESIS C/Z + F1-F4 are shown by the photographic base.
+   GamePad Viewer exposes the standard browser/XInput button set only;
+   extra GENESIS buttons light through whichever standard input they are mapped to. */
+
+.custom .fstick,
+.custom .trigger-button {
+    display: none !important;
+}
