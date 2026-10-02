@@ -2,50 +2,41 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>VOID GENESIS GPV v6 Preview</title>
+<title>VOID GENESIS GPV v8 Preview</title>
 <style>
-html, body {
-  margin:0;
-  width:100%;
-  height:100%;
-  min-width:1000px;
-  min-height:750px;
-  background:#111218;
-  overflow:hidden;
-}
-.preview-host {
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:1000px;
-  height:750px;
-  transform:translate(-50%,-50%);
-}
+html,body{margin:0;width:100%;height:100%;background:#111218;overflow:hidden;font-family:Arial,sans-serif}
+.host{position:absolute;left:50%;top:50%;width:1000px;height:750px;transform:translate(-50%,-50%)}
+.panel{position:fixed;left:10px;bottom:10px;background:#1b1d24;color:#eee;padding:10px 12px;border-radius:10px;font-size:13px;z-index:100}
+.panel input{width:150px}
 </style>
 <link rel="stylesheet" href="./void-genesis-gamepadviewer.css">
 </head>
 <body>
-<div class="preview-host">
+<div class="host">
   <div class="controller custom">
     <div class="triggers"><div class="trigger left"></div><div class="trigger right"></div></div>
     <div class="bumpers"><div class="bumper left"></div><div class="bumper right"></div></div>
     <div class="arrows"><div class="back"></div><div class="start"></div></div>
     <div class="abxy"><div class="button a"></div><div class="button b"></div><div class="button x"></div><div class="button y"></div></div>
-    <div class="sticks"><div class="stick left"></div><div class="stick right"></div></div>
+    <div class="sticks"><div class="stick left" data-test="l"></div><div class="stick right" data-test="r"></div></div>
     <div class="dpad"><div class="face up"></div><div class="face down"></div><div class="face left"></div><div class="face right"></div></div>
   </div>
 </div>
+<div class="panel">
+  右スティックX: <input id="rx" type="range" min="-22" max="22" value="0"><span id="rxv">0</span>px<br>
+  右スティックY: <input id="ry" type="range" min="-22" max="22" value="0"><span id="ryv">0</span>px
+</div>
 <script>
-for(const el of document.querySelectorAll('.bumper,.back,.start,.button,.stick,.face')){
-  el.onpointerdown=e=>{el.classList.add('pressed');el.setPointerCapture(e.pointerId)};
-  el.onpointerup=()=>el.classList.remove('pressed');
-  el.onpointercancel=()=>el.classList.remove('pressed');
+const r=document.querySelector('[data-test="r"]');
+const rx=document.getElementById('rx'), ry=document.getElementById('ry');
+function update(){
+  r.style.marginLeft=rx.value+'px';
+  r.style.marginTop=ry.value+'px';
+  r.style.transform='rotateX('+(-ry.value)+'deg) rotateY('+rx.value+'deg)';
+  document.getElementById('rxv').textContent=rx.value;
+  document.getElementById('ryv').textContent=ry.value;
 }
-for(const el of document.querySelectorAll('.trigger')){
-  el.onpointerdown=e=>{el.style.opacity='1';el.setPointerCapture(e.pointerId)};
-  el.onpointerup=()=>el.style.opacity='0';
-  el.onpointercancel=()=>el.style.opacity='0';
-}
+rx.oninput=ry.oninput=update; update();
 </script>
 </body>
 </html>

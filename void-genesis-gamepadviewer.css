@@ -1,5 +1,5 @@
 /*
-  VOID Gaming GENESIS / GamePad Viewer Skin v7
+  VOID Gaming GENESIS / GamePad Viewer Skin v8
   ------------------------------------------------------------
   Designed from the user's real front-view GENESIS image. v6 uses GamePad Viewer's native controller centering.
   Canvas: 1000 x 750
@@ -12,7 +12,7 @@
 .controller.custom {
     width: 1000px;
     height: 750px;
-    background: url("./genesis-base.png?v=7") 0 0 / 1000px 750px no-repeat;
+    background: url("./genesis-base.png?v=8") 0 0 / 1000px 750px no-repeat;
     overflow: visible;
     opacity: 1 !important;
     filter: none !important;
@@ -278,8 +278,8 @@
     top: 0;
 }
 .custom .stick.right {
-    left: 260px;
-    top: 0;
+    top: calc(100% - 77px);
+    left: calc(100% - 77px);
 }
 
 /* =========================
@@ -330,70 +330,63 @@
     display: none !important;
 }
 
-
 /* =========================
-   Near-max / full stick tilt glow
-   GPV does not provide a dedicated "100% tilt" class, so this CSS watches for
-   common maximum inline-style values and turns the ring bright pink.
+   Full / near-full stick tilt glow (v8)
+   GamePad Viewer writes inline margin-left / margin-top values.
+   Default maximum visual offset is 22px.
    ========================= */
-.custom .stick[style*="margin-left: 24"],
-.custom .stick[style*="margin-left: -24"],
-.custom .stick[style*="margin-left: 25"],
-.custom .stick[style*="margin-left: -25"],
-.custom .stick[style*="margin-top: 24"],
-.custom .stick[style*="margin-top: -24"],
-.custom .stick[style*="margin-top: 25"],
-.custom .stick[style*="margin-top: -25"],
-.custom .stick[style*="left: 24"],
-.custom .stick[style*="left: -24"],
-.custom .stick[style*="left: 25"],
-.custom .stick[style*="left: -25"],
-.custom .stick[style*="top: 24"],
-.custom .stick[style*="top: -24"],
-.custom .stick[style*="top: 25"],
-.custom .stick[style*="top: -25"],
-.custom .stick[style*="translate(24"],
-.custom .stick[style*="translate(-24"],
-.custom .stick[style*="translate(25"],
-.custom .stick[style*="translate(-25"] {
-    border-color: rgba(255,170,235,.98);
+
+/* Cardinal near-max: ~95-100% */
+.custom .stick[style*="margin-left: 21"],
+.custom .stick[style*="margin-left: -21"],
+.custom .stick[style*="margin-left: 22"],
+.custom .stick[style*="margin-left: -22"],
+.custom .stick[style*="margin-top: 21"],
+.custom .stick[style*="margin-top: -21"],
+.custom .stick[style*="margin-top: 22"],
+.custom .stick[style*="margin-top: -22"],
+
+/* Diagonal near-max: around 15-16px on both axes for a circular gate */
+.custom .stick[style*="margin-left: 15"][style*="margin-top: 15"],
+.custom .stick[style*="margin-left: 15"][style*="margin-top: -15"],
+.custom .stick[style*="margin-left: -15"][style*="margin-top: 15"],
+.custom .stick[style*="margin-left: -15"][style*="margin-top: -15"],
+.custom .stick[style*="margin-left: 16"][style*="margin-top: 15"],
+.custom .stick[style*="margin-left: 15"][style*="margin-top: 16"],
+.custom .stick[style*="margin-left: -16"][style*="margin-top: 15"],
+.custom .stick[style*="margin-left: -15"][style*="margin-top: 16"],
+.custom .stick[style*="margin-left: 16"][style*="margin-top: -15"],
+.custom .stick[style*="margin-left: 15"][style*="margin-top: -16"],
+.custom .stick[style*="margin-left: -16"][style*="margin-top: -15"],
+.custom .stick[style*="margin-left: -15"][style*="margin-top: -16"] {
+    border-color: rgba(255, 186, 236, 1);
     background:
-      radial-gradient(circle at 49% 45%, rgba(255,178,238,.98) 0 12%, rgba(255,126,221,.92) 28%, rgba(255,79,198,.66) 55%, rgba(95,12,62,.18) 100%);
+      radial-gradient(circle at 49% 45%,
+        rgba(255,205,241,.98) 0 10%,
+        rgba(255,147,224,.94) 28%,
+        rgba(255,80,197,.78) 54%,
+        rgba(70,14,52,.32) 100%);
     box-shadow:
-      inset 0 3px 7px rgba(255,255,255,.16),
-      inset 0 -6px 10px rgba(0,0,0,.35),
-      0 0 10px rgba(255,129,216,.95),
-      0 0 20px rgba(255,83,194,.85),
-      0 4px 6px rgba(0,0,0,.45);
-    filter: drop-shadow(0 0 8px rgba(255,112,210,.9))
-            drop-shadow(0 0 16px rgba(255,73,191,.85));
-}
-.custom .stick[style*="margin-left: 24"]::after,
-.custom .stick[style*="margin-left: -24"]::after,
-.custom .stick[style*="margin-left: 25"]::after,
-.custom .stick[style*="margin-left: -25"]::after,
-.custom .stick[style*="margin-top: 24"]::after,
-.custom .stick[style*="margin-top: -24"]::after,
-.custom .stick[style*="margin-top: 25"]::after,
-.custom .stick[style*="margin-top: -25"]::after,
-.custom .stick[style*="left: 24"]::after,
-.custom .stick[style*="left: -24"]::after,
-.custom .stick[style*="left: 25"]::after,
-.custom .stick[style*="left: -25"]::after,
-.custom .stick[style*="top: 24"]::after,
-.custom .stick[style*="top: -24"]::after,
-.custom .stick[style*="top: 25"]::after,
-.custom .stick[style*="top: -25"]::after,
-.custom .stick[style*="translate(24"]::after,
-.custom .stick[style*="translate(-24"]::after,
-.custom .stick[style*="translate(25"]::after,
-.custom .stick[style*="translate(-25"]::after {
-    opacity: 1;
-    border-color: rgba(255,204,242,.98);
-    background: radial-gradient(circle, rgba(255,170,233,.80) 0 22%, rgba(255,88,202,.55) 50%, transparent 72%);
-    box-shadow:
-      0 0 8px rgba(255,180,236,.98),
-      0 0 18px rgba(255,102,210,.95),
-      inset 0 0 9px rgba(255,123,217,.82);
+      inset 0 3px 7px rgba(255,255,255,.20),
+      inset 0 -6px 10px rgba(0,0,0,.32),
+      0 0 10px rgba(255,154,225,1),
+      0 0 22px rgba(255,91,202,.95),
+      0 0 34px rgba(255,59,185,.68);
+    filter:
+      drop-shadow(0 0 8px rgba(255,155,225,.95))
+      drop-shadow(0 0 18px rgba(255,82,198,.88));
 }
 
+/* Keep L3/R3 center-click glow separate; max tilt adds an outer pink halo. */
+.custom .stick[style*="margin-left: 21"]::before,
+.custom .stick[style*="margin-left: -21"]::before,
+.custom .stick[style*="margin-left: 22"]::before,
+.custom .stick[style*="margin-left: -22"]::before,
+.custom .stick[style*="margin-top: 21"]::before,
+.custom .stick[style*="margin-top: -21"]::before,
+.custom .stick[style*="margin-top: 22"]::before,
+.custom .stick[style*="margin-top: -22"]::before {
+    box-shadow:
+      inset 0 0 12px rgba(255,167,227,.45),
+      0 0 12px rgba(255,103,208,.75);
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><title>GENESIS Axis Check</title>
+<style>
+body{font-family:Arial,sans-serif;background:#111;color:#eee;padding:24px}
+.row{display:flex;align-items:center;gap:12px;margin:10px 0}
+.name{width:70px}.bar{width:420px;height:20px;background:#333;position:relative;border-radius:10px;overflow:hidden}
+.fill{position:absolute;left:50%;top:0;height:100%;width:0;background:#c75cff}
+.val{width:100px;font-family:monospace}
+</style></head>
+<body>
+<h2>GENESIS Gamepad API Axis Check</h2>
+<p>コントローラーのボタンを1回押してから、右スティックを左右/上下に動かしてください。</p>
+<div id="info">ゲームパッド待機中...</div>
+<div id="axes"></div>
+<script>
+function frame(){
+ const pads=navigator.getGamepads?navigator.getGamepads():[];
+ const g=[...pads].find(Boolean);
+ if(g){
+   document.getElementById('info').textContent=g.id+' / mapping: '+g.mapping;
+   const host=document.getElementById('axes');
+   if(host.children.length!==g.axes.length){
+     host.innerHTML='';
+     g.axes.forEach((_,i)=>{
+       const row=document.createElement('div'); row.className='row';
+       row.innerHTML='<div class="name">Axis '+i+'</div><div class="bar"><div class="fill"></div></div><div class="val"></div>';
+       host.appendChild(row);
+     });
+   }
+   [...host.children].forEach((row,i)=>{
+     const v=g.axes[i]||0;
+     const fill=row.querySelector('.fill');
+     if(v>=0){fill.style.left='50%';fill.style.width=(v*50)+'%'}
+     else{fill.style.left=(50+v*50)+'%';fill.style.width=(-v*50)+'%'}
+     row.querySelector('.val').textContent=v.toFixed(4);
+   });
+ }
+ requestAnimationFrame(frame);
+}
+frame();
+</script></body></html>
