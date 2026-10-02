@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>VOID GENESIS GPV v8 Preview</title>
+<title>VOID GENESIS GPV v9 Preview</title>
 <style>
 html,body{margin:0;width:100%;height:100%;background:#111218;overflow:hidden;font-family:Arial,sans-serif}
 .host{position:absolute;left:50%;top:50%;width:1000px;height:750px;transform:translate(-50%,-50%)}
-.panel{position:fixed;left:10px;bottom:10px;background:#1b1d24;color:#eee;padding:10px 12px;border-radius:10px;font-size:13px;z-index:100}
-.panel input{width:150px}
+.panel{position:fixed;left:10px;bottom:10px;background:#1b1d24;color:#eee;padding:12px 14px;border-radius:10px;font-size:13px;z-index:100}
+.panel input{width:180px}
 </style>
 <link rel="stylesheet" href="./void-genesis-gamepadviewer.css">
 </head>
@@ -18,23 +18,23 @@ html,body{margin:0;width:100%;height:100%;background:#111218;overflow:hidden;fon
     <div class="bumpers"><div class="bumper left"></div><div class="bumper right"></div></div>
     <div class="arrows"><div class="back"></div><div class="start"></div></div>
     <div class="abxy"><div class="button a"></div><div class="button b"></div><div class="button x"></div><div class="button y"></div></div>
-    <div class="sticks"><div class="stick left" data-test="l"></div><div class="stick right" data-test="r"></div></div>
+    <div class="sticks"><div class="stick left"></div><div class="stick right" id="rstick"></div></div>
     <div class="dpad"><div class="face up"></div><div class="face down"></div><div class="face left"></div><div class="face right"></div></div>
   </div>
 </div>
 <div class="panel">
-  右スティックX: <input id="rx" type="range" min="-22" max="22" value="0"><span id="rxv">0</span>px<br>
-  右スティックY: <input id="ry" type="range" min="-22" max="22" value="0"><span id="ryv">0</span>px
+  右X <input id="rx" type="range" min="-22" max="22" step=".1" value="0"><span id="rxv">0</span>px<br>
+  右Y <input id="ry" type="range" min="-22" max="22" step=".1" value="0"><span id="ryv">0</span>px<br>
+  <small>18px前後〜最大付近、または斜め最大付近でピンク発光</small>
 </div>
 <script>
-const r=document.querySelector('[data-test="r"]');
+const r=document.getElementById('rstick');
 const rx=document.getElementById('rx'), ry=document.getElementById('ry');
 function update(){
-  r.style.marginLeft=rx.value+'px';
-  r.style.marginTop=ry.value+'px';
-  r.style.transform='rotateX('+(-ry.value)+'deg) rotateY('+rx.value+'deg)';
-  document.getElementById('rxv').textContent=rx.value;
-  document.getElementById('ryv').textContent=ry.value;
+  r.style.marginLeft=Number(rx.value)+'px';
+  r.style.marginTop=Number(ry.value)+'px';
+  r.style.transform=`rotateX(${-Number(ry.value)}deg) rotateY(${Number(rx.value)}deg)`;
+  rxv.textContent=rx.value; ryv.textContent=ry.value;
 }
 rx.oninput=ry.oninput=update; update();
 </script>
