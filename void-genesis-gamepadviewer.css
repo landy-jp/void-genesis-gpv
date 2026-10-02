@@ -1,7 +1,7 @@
 /*
-  VOID Gaming GENESIS / GamePad Viewer Skin v3
+  VOID Gaming GENESIS / GamePad Viewer Skin v4
   ------------------------------------------------------------
-  Designed from the user's real front-view GENESIS image. Base image is loaded as an external file for GPV compatibility.
+  Designed from the user's real front-view GENESIS image. v4 adjusts top padding and thumbstick alignment.
   Canvas: 1200 x 900
   Input model: standard XInput / Gamepad Viewer custom skin DOM.
   L2/R2: analog intensity glow
@@ -38,7 +38,7 @@
     left: 0;
     top: 0;
     width: 1200px;
-    height: 175px;
+    height: 190px;
     pointer-events: none;
 }
 .custom .trigger {
@@ -66,7 +66,7 @@
 }
 .custom .trigger.left {
     left: 180px;
-    top: 38px;
+    top: 58px;
     width: 170px;
     height: 120px;
     clip-path: polygon(8% 73%, 14% 28%, 28% 7%, 73% 2%, 90% 16%, 100% 43%, 96% 82%, 82% 98%, 20% 98%);
@@ -74,7 +74,7 @@
 }
 .custom .trigger.right {
     left: 850px;
-    top: 38px;
+    top: 58px;
     width: 170px;
     height: 120px;
     clip-path: polygon(4% 82%, 0 43%, 10% 16%, 27% 2%, 72% 7%, 86% 28%, 92% 73%, 80% 98%, 18% 98%);
@@ -91,7 +91,7 @@
     left: 0;
     top: 0;
     width: 1200px;
-    height: 175px;
+    height: 190px;
     pointer-events: none;
 }
 .custom .bumper {
@@ -119,7 +119,7 @@
 }
 .custom .bumper.left {
     left: 414px;
-    top: 72px;
+    top: 92px;
     width: 121px;
     height: 80px;
     clip-path: polygon(2% 80%, 8% 32%, 25% 8%, 77% 3%, 95% 25%, 100% 68%, 89% 95%, 18% 98%);
@@ -127,7 +127,7 @@
 }
 .custom .bumper.right {
     left: 665px;
-    top: 72px;
+    top: 92px;
     width: 121px;
     height: 80px;
     clip-path: polygon(0 68%, 5% 25%, 23% 3%, 75% 8%, 92% 32%, 98% 80%, 82% 98%, 11% 95%);
@@ -144,7 +144,7 @@
 .custom .arrows {
     position: absolute;
     left: 403px;
-    top: 296px;
+    top: 316px;
     width: 394px;
     height: 54px;
 }
@@ -173,7 +173,7 @@
 .custom .abxy {
     position: absolute;
     left: 806px;
-    top: 268px;
+    top: 288px;
     width: 207px;
     height: 205px;
 }
@@ -219,7 +219,7 @@
 .custom .sticks {
     position: absolute;
     left: 397px;
-    top: 460px;
+    top: 480px;
     width: 404px;
     height: 92px;
 }
@@ -252,8 +252,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     transform: translate(-50%,-50%);
     border-radius: 50%;
     opacity: 0;
@@ -283,7 +283,7 @@
 .custom .dpad {
     position: absolute;
     left: 240px;
-    top: 300px;
+    top: 320px;
     width: 110px;
     height: 110px;
 }
